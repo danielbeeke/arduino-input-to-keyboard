@@ -15,6 +15,8 @@ long lastDebounceTime2 = 0;  // the last time the output pin was toggled
 
 long debounceDelay = 1000;    // the debounce time; increase if the output flickers
 
+long timeSinceStart = 0;
+
 void setup() {
   pinMode(buttonPin1, INPUT_PULLUP);
   pinMode(buttonPin2, INPUT_PULLUP);
@@ -67,21 +69,59 @@ void loop() {
   // check if the pushbutton is pressed.
   // if it is, the pushButtonState is HIGH:
   if (pushButtonState == HIGH) {
-    // turn LED on:
-    digitalWrite(5, HIGH);
+    timeSinceStart = millis();
+  }
+  
+  if (timeSinceStart && (millis() - timeSinceStart) > 1 && (millis() - timeSinceStart) < 3000) {
+     digitalWrite(5, HIGH);
+  }
+  else if (timeSinceStart && (millis() - timeSinceStart) > 3000 && (millis() - timeSinceStart) < 4000) {
+     digitalWrite(5, HIGH);
+    digitalWrite(6, HIGH);  
+  } 
+    else if (timeSinceStart && (millis() - timeSinceStart) > 4000 && (millis() - timeSinceStart) < 5000) {
+     digitalWrite(5, HIGH);
     digitalWrite(6, HIGH);
-    digitalWrite(7, HIGH);
-    digitalWrite(8, HIGH);
-    digitalWrite(9, HIGH);
+      digitalWrite(7, HIGH);  
+  } 
+      else if (timeSinceStart && (millis() - timeSinceStart) > 5000 && (millis() - timeSinceStart) < 6000) {
+     digitalWrite(5, HIGH);
+    digitalWrite(6, HIGH);
+      digitalWrite(7, HIGH);  
+      digitalWrite(8, HIGH);  
 
-  } else {
-    // turn LED off:
+  } 
+  else if (timeSinceStart && (millis() - timeSinceStart) > 6000 && (millis() - timeSinceStart) < 7000) {
+     digitalWrite(5, HIGH);
+    digitalWrite(6, HIGH);
+      digitalWrite(7, HIGH);  
+      digitalWrite(8, HIGH);  
+            digitalWrite(9, HIGH);  
+
+  } 
+  else {
     digitalWrite(5, LOW);
     digitalWrite(6, LOW);
     digitalWrite(7, LOW);
     digitalWrite(8, LOW);
     digitalWrite(9, LOW);
-
-  }
+  }    
 
 }
+
+
+//    // turn LED off:
+//    digitalWrite(5, LOW);
+//    digitalWrite(6, LOW);
+//    digitalWrite(7, LOW);
+//    digitalWrite(8, LOW);
+//    digitalWrite(9, LOW);
+
+
+    // turn LED on:
+//    digitalWrite(5, HIGH);
+//    digitalWrite(6, HIGH);
+//    digitalWrite(7, HIGH);
+//    digitalWrite(8, HIGH);
+//    digitalWrite(9, HIGH);
+
